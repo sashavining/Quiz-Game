@@ -31,6 +31,26 @@ module.exports = {
             console.log(err)
         }
     },
+    editBankiQuestion: async (req, res)=>{
+        try{
+            await BankiQuestion.findOneAndUpdate({_id:req.body.id},{
+                Answer: req.body.answer
+            })
+            console.log('Edited')
+            res.json('Edited!')
+        }catch(err){
+            console.log(err)
+        }
+    },
+    deleteBankiQuestion: async (req, res)=>{
+        try{
+            await BankiQuestion.findOneAndDelete({_id:req.body.id})
+            console.log('Edited')
+            res.json('Edited!')
+        }catch(err){
+            console.log(err)
+        }
+    },
     // optimization: a single 'toggle complete function'
     markComplete: async (req, res)=>{
         try{

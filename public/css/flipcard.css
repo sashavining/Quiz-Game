@@ -62,12 +62,12 @@ body {
   background-color: #fff;
   transform: rotateY(180deg);
 }
-.card:hover .card__side--back {
+/* .card:hover .card__side--back {
   transform: rotateY(0);
 }
 .card:hover .card__side--front {
   transform: rotateY(-180deg);
-}
+} */
 .card__theme {
   position: absolute;
   top: 50%;
@@ -168,4 +168,10 @@ body {
   .card__title {
     font-size: 4rem;
   }
+}
+
+.artboardControls {
+  display: Flex;
+  flex-direction: column;
+  margin: 10px;
 }
