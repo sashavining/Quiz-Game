@@ -58,7 +58,7 @@ module.exports = {
         console.log(req.body.id)
         try{
             await Question.findOneAndDelete({_id:req.body.id})
-            console.log('Deleted Todo')
+            console.log('Deleted Question')
             res.json('Deleted It')
         }catch(err){
             console.log(err)
