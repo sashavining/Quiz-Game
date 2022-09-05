@@ -1,9 +1,15 @@
 const deleteBtn = document.querySelectorAll('.del')
+const deleteBankiBtn = document.querySelectorAll('.del-banki')
+
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteQuestion)
+})
+
+Array.from(deleteBankiBtn).forEach((el)=>{
+    el.addEventListener('click', deleteBankiQuestion)
 })
 
 Array.from(todoItem).forEach((el)=>{
@@ -31,6 +37,25 @@ async function deleteQuestion(){
         console.log(err)
     }
 }
+
+async function deleteBankiQuestion(){
+    const questionId = this.parentNode.dataset.id
+    try{
+        const response = await fetch('deleteBankiQuestion', {
+            method: 'delete',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                'id': questionId
+            })
+        })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+    }catch(err){
+        console.log(err)
+    }
+}
+
 
 async function markComplete(){
     const todoId = this.parentNode.dataset.id
