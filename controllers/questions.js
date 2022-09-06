@@ -3,22 +3,13 @@ const Question = require('../models/Question')
 const BankiQuestion = require('../models/BankiQuestion')
 
 module.exports = {
-    getBankiQuestions: async (req,res)=>{
+    getQuestions: async (req,res)=>{
         console.log(req.user)
         try{
 
-            const questions = await BankiQuestion.aggregate([{$sample: {size: 20}}]) // to do: make it return a random 20 (w/aggregate?)
-            const completedBanki = await BankiQuestion.countDocuments({userId:req.user.id, completed: false})
+            const questions = await Question.aggregate([{$sample: {size: 20}}]) // to do: make it return a random 20 (w/aggregate?)
+            const completedBanki = await Question.countDocuments({userId:req.user.id, completed: false})
             res.render('questions.ejs', {questions: questions, left: completedBanki, user: req.user, questionsJson: JSON.stringify(questions)})
-        } catch(err){
-            console.log(err)
-        }
-    },
-    getBankiQuestionsToEdit: async (req,res)=>{
-        console.log(req.user)
-        try{
-            const questions = await BankiQuestion.find({}) // to do: make it return a random 20 (w/aggregate?)
-            res.render('editBankiQuestions.ejs', {questions: questions, user: req.user})
         } catch(err){
             console.log(err)
         }
@@ -29,26 +20,6 @@ module.exports = {
             console.log('Question has been added!')
             res.redirect('/questions')
         } catch(err){
-            console.log(err)
-        }
-    },
-    editBankiQuestion: async (req, res)=>{
-        try{
-            await BankiQuestion.findOneAndUpdate({_id:req.body.id},{
-                Answer: req.body.answer
-            })
-            console.log('Edited')
-            res.json('Edited!')
-        }catch(err){
-            console.log(err)
-        }
-    },
-    deleteBankiQuestion: async (req, res)=>{
-        try{
-            await BankiQuestion.findOneAndDelete({_id:req.body.id})
-            console.log('Edited')
-            res.json('Edited!')
-        }catch(err){
             console.log(err)
         }
     },
@@ -76,9 +47,9 @@ module.exports = {
         }
     },
     deleteQuestion: async (req, res)=>{
-        console.log(req.body.id)
+        console.log(req.body.questionIdFromJSFile)
         try{
-            await Question.findOneAndDelete({_id:req.body.id})
+            await Question.findOneAndDelete({_id:req.body.questionIdFromJSFile})
             console.log('Deleted Question')
             res.json('Deleted It')
         }catch(err){
