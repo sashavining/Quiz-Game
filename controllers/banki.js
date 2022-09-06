@@ -22,8 +22,10 @@ module.exports = {
         }
     },
     editBankiQuestion: async (req, res)=>{
+        console.log(`editing ${req.body.id} with ${req.body.question} and ${req.body.answer}`)
         try{
             await BankiQuestion.findOneAndUpdate({_id:req.body.id},{
+                Question: req.body.question,
                 Answer: req.body.answer
             })
             console.log('Edited')

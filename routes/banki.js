@@ -8,5 +8,7 @@ router.get('/', ensureAuth, bankiController.getBankiQuestions)
 
 router.get('/editBanki', ensureAuth, bankiController.getBankiQuestionsToEdit)
 
+router.put('/editBanki', ensureAuth, bankiController.editBankiQuestion)
+
 
 module.exports = router
