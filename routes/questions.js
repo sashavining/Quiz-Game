@@ -14,7 +14,12 @@ router.put('/markComplete', questionsController.markComplete)
 
 router.put('/markIncomplete', questionsController.markIncomplete)
 
+router.put('/editQuestion', questionsController.editQuestion)
+
 router.delete('/deleteQuestion', questionsController.deleteQuestion)
+
+router.get('/:questionSetId', ensureAuth, questionsController.getQuestionSet)
+
 
 
 module.exports = router

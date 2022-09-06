@@ -11,7 +11,7 @@
     <h2>User generated sets</h2>
     <ul>
     <% questionSets.forEach( el => { %>
-       <li><%= el.setName %></li>
+       <li><a href="/questions/<%=el._id%>"><%= el.setName %></a></li>
     <% }) %>
     </ul>
     <% questions.forEach( el => { %>
@@ -65,9 +65,9 @@
     <form action="/questions/createQuestion" method='POST'>
         <textarea cols="50" rows = "5" placeholder="Enter your question here" name="questionItem"></textarea>
         <textarea cols="50" rows = "5" placeholder="Enter the answer to your question here" name='answerItem'></textarea>
-        <select name="setName">
+        <select name="QuestionSetId">
             <% questionSets.forEach( el => { %>
-                <option value="<%= el.setName %>"><%= el.setName %></option>
+                <option value="<%= el._id %>"><%= el.setName %></option>
              <% }) %>         
         </select>
         <input type="submit">

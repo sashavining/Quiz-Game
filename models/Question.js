@@ -5,6 +5,11 @@ const QuestionSchema = new mongoose.Schema({
     type: String, 
     required: true, 
   },
+  QuestionSetId: {
+    type: String,
+    required: true,
+    ref: 'sets'
+  },
   Answer: {
     type: String,
     required: true,

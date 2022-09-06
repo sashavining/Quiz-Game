@@ -17,7 +17,7 @@ module.exports = {
     },
     createQuestion: async (req, res)=>{
         try{
-            await Question.create({Question: req.body.questionItem, Answer:req.body.answerItem, Completed: false, userId: req.user.id})
+            await Question.create({Question: req.body.questionItem, Answer:req.body.answerItem, QuestionSetId:req.body.QuestionSetId, Completed: false, userId: req.user.id})
             console.log('Question has been added!')
             res.redirect('/questions')
         } catch(err){
@@ -65,5 +65,30 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
+    },
+    getQuestionSet: async (req, res) => {
+        try {
+            let { questionSetId } = req.params
+            let questionSet = await QuestionSet.findOne({ _id: questionSetId })
+            console.log(questionSet.setName)
+            let questions = await Question.find({ QuestionSetId: questionSetId })
+            res.render('editQuestions.ejs', {questions: questions, questionSet: questionSet})    
+        } catch (err) {
+            console.log(err)
+        }
+    },
+    editQuestion: async (req, res)=>{
+        console.log(`editing ${req.body.id} with ${req.body.question} and ${req.body.answer}`)
+        try{
+            await Question.findOneAndUpdate({_id:req.body.id},{
+                Question: req.body.question,
+                Answer: req.body.answer
+            })
+            console.log('Edited')
+            res.json('Edited!')
+        }catch(err){
+            console.log(err)
+        }
     }
+
 }    
