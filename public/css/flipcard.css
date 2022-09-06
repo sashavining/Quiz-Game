@@ -51,7 +51,7 @@ body {
   backface-visibility: hidden;
   /* We don't want to see the back part of the element. */
   border-radius: 3px;
-  overflow: hidden;
+  overflow: auto;
   /* The image is overflowing the parent. */
   box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.15);
 }
