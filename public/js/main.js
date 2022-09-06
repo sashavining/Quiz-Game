@@ -1,21 +1,25 @@
 const deleteBtn = document.querySelectorAll('.del')
 const deleteBankiBtn = document.querySelectorAll('.del-banki')
+const editBankiModalBtn = document.querySelectorAll('.edit-banki-modal-open')
+const editBankiSubmitButton = document.querySelector("#edit-banki-question-submit")
 
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
 let counter = 0
 
-document.querySelector('.answerBtn').addEventListener('click', showAnswer)
-document.querySelector('.questionBtn').addEventListener('click', showQuestion)
-document.querySelector('.nextBtn').addEventListener('click', showNext)
-document.querySelector('.previousBtn').addEventListener('click', showPrevious)
+if (document.querySelector('.answerBtn')) {
+    document.querySelector('.answerBtn').addEventListener('click', showAnswer)
+    document.querySelector('.questionBtn').addEventListener('click', showQuestion)
+    document.querySelector('.nextBtn').addEventListener('click', showNext)
+    document.querySelector('.previousBtn').addEventListener('click', showPrevious)
+}
 
 Array.from(deleteBtn).forEach((el)=>{
     el.addEventListener('click', deleteQuestion)
 })
 
-Array.from(deleteBankiBtn).forEach((el)=>{
-    el.addEventListener('click', deleteBankiQuestion)
+Array.from(editBankiModalBtn).forEach((el)=>{
+    el.addEventListener('click', openEditBankiPopUp)
 })
 
 Array.from(todoItem).forEach((el)=>{
@@ -25,6 +29,8 @@ Array.from(todoItem).forEach((el)=>{
 Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', markIncomplete)
 })
+
+editBankiSubmitButton.addEventListener('click', submitEditBanki)
 
 
 function showAnswer() {
@@ -52,6 +58,47 @@ function showPrevious() {
 }
 
 
+function openEditBankiPopUp() {
+    let questionText = this.parentNode.dataset.question
+    let answerText = this.parentNode.dataset.answer
+    const questionId = this.parentNode.dataset.id
+
+
+    const editBankiQuestionInput = document.querySelector("#edit-banki-question")
+    const editBankiAnswerInput = document.querySelector("#edit-banki-question-answer")
+    const modal = document.querySelector('#edit-banki-question-modal')
+
+    editBankiQuestionInput.value = questionText
+    editBankiAnswerInput.value = answerText
+    modal.dataset.id = questionId
+}
+
+async function submitEditBanki() {
+    let questionText = this.parentNode.dataset.question
+    let answerText = this.parentNode.dataset.answer
+    const questionId = document.querySelector('#edit-banki-question-modal').dataset.id
+
+    const editBankiQuestionInput = document.querySelector("#edit-banki-question").value || questionText
+    const editBankiAnswerInput = document.querySelector("#edit-banki-question-answer").value || answerText
+
+    try{
+        const response = await fetch('editBanki', {
+            method: 'PUT',
+            headers: {'Content-type': 'application/json'},
+            body: JSON.stringify({
+                'id': questionId,
+                'question': editBankiQuestionInput,
+                'answer': editBankiAnswerInput
+            })
+        }).then(response => window.location = response.url)
+        .catch(err => console.log(err))
+        // const data = await response.json()
+        // console.log(data)
+    } catch(err){
+        console.log(err)
+    }
+}
+
 async function deleteQuestion(){
     const questionId = this.parentNode.dataset.id
     try{
@@ -70,23 +117,23 @@ async function deleteQuestion(){
     }
 }
 
-async function deleteBankiQuestion(){
-    const questionId = this.parentNode.dataset.id
-    try{
-        const response = await fetch('deleteBankiQuestion', {
-            method: 'delete',
-            headers: {'Content-type': 'application/json'},
-            body: JSON.stringify({
-                'id': questionId
-            })
-        })
-        const data = await response.json()
-        console.log(data)
-        location.reload()
-    }catch(err){
-        console.log(err)
-    }
-}
+// async function deleteBankiQuestion(){
+//     const questionId = this.parentNode.dataset.id
+//     try{
+//         const response = await fetch('deleteBankiQuestion', {
+//             method: 'delete',
+//             headers: {'Content-type': 'application/json'},
+//             body: JSON.stringify({
+//                 'id': questionId
+//             })
+//         })
+//         const data = await response.json()
+//         console.log(data)
+//         location.reload()
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
 
 
 async function markComplete(){
