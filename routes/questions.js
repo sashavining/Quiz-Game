@@ -14,7 +14,7 @@ router.put('/markComplete', questionsController.markComplete)
 
 router.put('/markIncomplete', questionsController.markIncomplete)
 
-router.put('/editQuestion', questionsController.editQuestion)
+// router.put('/editQuestion', questionsController.editQuestion)
 
 router.delete('/deleteQuestion', questionsController.deleteQuestion)
 

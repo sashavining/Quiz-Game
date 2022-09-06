@@ -31,9 +31,9 @@ if (editBankiSubmitButton) {
 }
 
 
-Array.from(editQuestionModalBtn).forEach((el)=>{
-    el.addEventListener('click', openEditQuestionPopUp)
-})
+// Array.from(editQuestionModalBtn).forEach((el)=>{
+//     el.addEventListener('click', openEditQuestionPopUp)
+// })
 
 
 Array.from(todoItem).forEach((el)=>{
@@ -44,7 +44,7 @@ Array.from(todoComplete).forEach((el)=>{
     el.addEventListener('click', markIncomplete)
 })
 
-editQuestionSubmitButton.addEventListener('click', submitEditQuestion)
+// editQuestionSubmitButton.addEventListener('click', submitEditQuestion)
 
 
 function showAnswer() {

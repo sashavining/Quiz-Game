@@ -6,9 +6,9 @@ const { ensureAuth } = require('../middleware/auth')
 
 router.get('/', ensureAuth, bankiController.getBankiQuestions)
 
-router.get('/editBanki', ensureAuth, bankiController.getBankiQuestionsToEdit)
+// router.get('/editBanki', ensureAuth, bankiController.getBankiQuestionsToEdit)
 
-router.put('/editBanki', ensureAuth, bankiController.editBankiQuestion)
+// router.put('/editBanki', ensureAuth, bankiController.editBankiQuestion)
 
 
 module.exports = router
