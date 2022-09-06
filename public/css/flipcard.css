@@ -170,8 +170,11 @@ body {
   }
 }
 
-.artboardControls {
+.artboardControls button {
   display: Flex;
   flex-direction: column;
-  margin: 10px;
+  height: 3rem;
+  width: 10rem;
+  margin: 20px 40px;
+  justify-content: center;
 }

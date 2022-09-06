@@ -1,7 +1,7 @@
 const deleteBtn = document.querySelectorAll('.del')
 const todoItem = document.querySelectorAll('span.not')
 const todoComplete = document.querySelectorAll('span.completed')
-
+let counter = 0
 
 document.querySelector('.answerBtn').addEventListener('click', showAnswer)
 document.querySelector('.questionBtn').addEventListener('click', showQuestion)
@@ -31,10 +31,18 @@ function showQuestion() {
 }
 
 function showNext() {
-    //not yet implimented
+    counter === questionsArr.length - 1 ? counter = 0 : counter++
+    document.querySelector('.card__subject').innerText = questionsArr[counter].Question
+    document.querySelector('.card__details').innerText = questionsArr[counter].Answer
+    showQuestion()
+
 }
 function showPrevious() {
-    // not yet implimented
+    counter === 0 ? counter = questionsArr.length - 1 : counter--
+    document.querySelector('.card__subject').innerText = questionsArr[counter].Question
+    document.querySelector('.card__details').innerText = questionsArr[counter].Answer
+    showQuestion()
+    
 }
 
 
