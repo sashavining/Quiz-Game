@@ -1,0 +1,45 @@
+   
+
+<h1 class="text-center my-3">Banki Set</h1>
+<div class="accordion accordion-flush m-3" id="accordionFlushExample">
+    <% questions.forEach( el => { %>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%=el._id%>" aria-expanded="false" aria-controls="flush-collapse<%=el._id%>">
+        <%= el.Question %>
+        </button>
+      </h2>
+      <div id="flush-collapse<%=el._id%>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%=el._id%>" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body" data-id="<%=el._id %>" data-question="<%= el.Question %>" data-answer="<%= el.Answer %>">
+            <p><%= el.Answer %></p>
+            <img src="/assets/edit-icon.svg" width="40px" height="40px" alt="edit icon" class="mx-2 edit-banki-modal-open" data-bs-toggle="modal" data-bs-target="#edit-banki-question-modal">
+            <!-- <img src="/assets/delete-icon.svg" width="40px" height="40px" alt="delete icon" class="mx-2 del-banki"> -->
+        </div>
+      </div>
+    </div>
+    <% }) %>    
+  </div>
+  <div class="modal fade" id="edit-banki-question-modal" tabindex="-1" aria-labelledby="edit-card-label" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="modal-title text-dark h3" id="edit-card-label">Edit Flashcard</span>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+  <form class="row g-3 needs-validation" novalidate>
+    <div class="col-md-12 mb-3">
+        <label for="edit-banki-question" class="form-label">Edit Question</label>
+        <input name="edit-banki-new-question" type="text" id="edit-banki-question" class="form-control my-1" placeholder="Updated question">
+        <label for="edit-banki-question-answer" class="form-label my-1">Edit Answer</label>
+        <textarea name="edit-banki-new-answer" type="text" id="edit-banki-question-answer" class="form-control my-1" placeholder="Updated answer" rows="5"></textarea>
+    </div>
+
+    <button class="btn btn-warning" id="edit-banki-question-submit">Update Question</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>

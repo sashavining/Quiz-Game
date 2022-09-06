@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/css/flipcard.css">
+
+
+<body>
+
+    <h1>Practice Banki Questions</h1>
+    <!-- <a href="/banki/editBanki">Edit banki here :) (in progress)</a> -->
+    <!-- <ul>
+    <% questions.forEach( el => { %>
+            <li class='questionItem' data-id='<%=el._id%>'>
+                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.Question %></span>
+            </li>
+    <% }) %>    
+    </ul>
+ -->
+    <div class="artboard">
+        <div class="card">
+       
+         <div class="card__side card__side--back">
+        
+          <div class="card__details">
+            <%= questions[0].Answer %>
+            </div>
+         </div>
+       
+         <div class="card__side card__side--front">
+          <div class="card__theme">
+           <div class="card__theme-box">
+            <p class="card__subject">
+                <%= questions[0].Question %>
+            </p>
+           </div>
+          </div>
+         </div>
+       
+        </div>
+        <div class="artboardControls">
+            <button class="answerBtn" type="submit">Show Answer</button>
+            <button class="questionBtn" type="submit">Show Question</button>
+            <button class="nextBtn" type="submit">Next Question</button>
+            <button class="previousBtn" type="submit">Previous Question</button>
+
+        </div>
+    </div>
+    
+
+    <script src="js/main.js"></script>
+    <script async>
+            let questionsArr = <%- questionsJson %>
+    </script>
+</body>

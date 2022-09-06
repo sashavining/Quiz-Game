@@ -36,6 +36,8 @@ bcrypt, connect-mongo, dotenv, ejs, express, express-flash, express-session, mon
 - Temporary link generator that lets you send quizes to anyone
 - getting server up on heroku and connecting it with a netlify address
 
+
+- to switch branch use git checkout 'name of branch'
 ---
 
 Have fun testing and improving it! 😎
