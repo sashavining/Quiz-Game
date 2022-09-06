@@ -8,7 +8,9 @@ h1{
 .not{
     text-decoration: underline;
 }
-
+ul.nav > li{
+    padding-right: 1.5rem;
+}
 /* 
 #05668D
 #427
