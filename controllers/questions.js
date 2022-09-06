@@ -25,7 +25,7 @@ module.exports = {
     },
     createQuestion: async (req, res)=>{
         try{
-            await Question.create({question: req.body.question, answer:req.body.answer, completed: false, userId: req.user.id})
+            await Question.create({Question: req.body.questionItem, Answer:req.body.answerItem, Completed: false, userId: req.user.id})
             console.log('Question has been added!')
             res.redirect('/questions')
         } catch(err){
