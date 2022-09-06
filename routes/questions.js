@@ -4,7 +4,7 @@ const homeController = require('../controllers/home')
 const questionsController = require('../controllers/questions') 
 const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', ensureAuth, questionsController.getBankiQuestions)
+router.get('/', ensureAuth, questionsController.getQuestions)
 
 router.post('/createQuestion', questionsController.createQuestion)
 
@@ -14,8 +14,5 @@ router.put('/markIncomplete', questionsController.markIncomplete)
 
 router.delete('/deleteQuestion', questionsController.deleteQuestion)
 
-router.delete('/deleteBankiQuestion', questionsController.deleteBankiQuestion)
-
-router.get('/editBanki', ensureAuth, questionsController.getBankiQuestionsToEdit)
 
 module.exports = router
