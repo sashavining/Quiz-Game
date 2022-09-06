@@ -46,6 +46,8 @@ Studying is hard, but when you can turn studying into a friendly competition, we
 
 - Install all dependences or node packages used for development via Terminal `npm install`
 
+
+- to switch branch use git checkout 'name of branch'
 ---
 
 Have fun testing and improving it! 😎
