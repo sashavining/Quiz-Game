@@ -3,8 +3,10 @@
 
 <body>
 
+
     <h1>Banki Questions</h1>
     <a href="/banki/editBanki">Edit banki here :) (in progress)</a>
+
     <ul>
     <% questions.forEach( el => { %>
             <li class='questionItem' data-id='<%=el._id%>'>
@@ -40,7 +42,6 @@
             <button class="questionBtn" type="submit">Show Question</button>
             <button class="nextBtn" type="submit">Next Question</button>
             <button class="previousBtn" type="submit">Previous Question</button>
-
         </div>
     </div>
     
