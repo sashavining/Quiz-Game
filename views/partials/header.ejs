@@ -14,8 +14,12 @@
 
 
         <div class="text-end">
+          <% if (!user) { %>
           <a href="/login" class="btn btn-outline-light me-2">Login</a>
           <a href="/signup" class="btn btn-warning">Sign-up</a>
+          <% } else { %>
+            <a href="/logout" class="btn btn-warning">Logout</a>
+          <% } %>
         </div>
       </div>
     </div>

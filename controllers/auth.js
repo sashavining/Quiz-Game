@@ -7,7 +7,8 @@ const User = require('../models/User')
       return res.redirect('/questions')
     }
     res.render('login', {
-      title: 'Login'
+      title: 'Login',
+      user: req.user
     })
   }
   
@@ -52,7 +53,9 @@ const User = require('../models/User')
       return res.redirect('/questions')
     }
     res.render('signup', {
-      title: 'Create Account'
+      title: 'Create Account',
+      user: req.user
+
     })
   }
   
