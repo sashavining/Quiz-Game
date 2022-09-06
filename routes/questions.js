@@ -8,6 +8,8 @@ router.get('/', ensureAuth, questionsController.getQuestions)
 
 router.post('/createQuestion', questionsController.createQuestion)
 
+router.post('/createSet', questionsController.createSet)
+
 router.put('/markComplete', questionsController.markComplete)
 
 router.put('/markIncomplete', questionsController.markIncomplete)

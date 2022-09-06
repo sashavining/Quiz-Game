@@ -8,6 +8,12 @@
     <a href="/banki/editBanki">Edit banki here :) (in progress)</a>
 
     <ul>
+    <h2>User generated sets</h2>
+    <ul>
+    <% questionSets.forEach( el => { %>
+       <li><%= el.setName %></li>
+    <% }) %>
+    </ul>
     <% questions.forEach( el => { %>
             <li class='questionItem' data-id='<%=el._id%>'>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.Question %></span>
@@ -45,7 +51,13 @@
         </div>
     </div>
     
+    <h2>Add your own set here</h2>
 
+    <!-- This form post is failing because thhere need to be fields where the name matches the fields we have in the question model -->
+    <form action="/questions/createSet" method='POST'>
+        <input type="text" placeholder="Enter your set name here" name="setName">
+        <input type="submit">
+    </form>
     
     <h2>Add your own questions here</h2>
 
@@ -53,6 +65,11 @@
     <form action="/questions/createQuestion" method='POST'>
         <textarea cols="50" rows = "5" placeholder="Enter your question here" name="questionItem"></textarea>
         <textarea cols="50" rows = "5" placeholder="Enter the answer to your question here" name='answerItem'></textarea>
+        <select name="setName">
+            <% questionSets.forEach( el => { %>
+                <option value="<%= el.setName %>"><%= el.setName %></option>
+             <% }) %>         
+        </select>
         <input type="submit">
     </form>
 
